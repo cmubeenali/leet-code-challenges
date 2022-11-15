@@ -6,23 +6,27 @@ class Solution(object):
         :rtype: List[int]
         """
         result=[]
-        for x in nums:
+        idx_x=0
+        for x in nums:            
             is_found=False
             if x<target:
+                idx_y=0
                 for y in nums:
-                    if y<target:
+                    if y<target and idx_x!=idx_y:
                         if x+y==target:
-                            result.append(nums.index(x))
-                            result.append(nums.index(y))
+                            result.append(idx_x)
+                            result.append(idx_y)
                             is_found=True
                             break
+                    idx_y+=1
+            idx_x+=1
             if is_found:
                 break
         return result
 
 if __name__=='__main__':
     two_sum=Solution()
-    nums=[10,6,4,2,11,55,7,3,5,1,35]
+    nums=[2,7,11,15]
     target=9
     result= two_sum.twoSum(nums,target)
     print(result)
